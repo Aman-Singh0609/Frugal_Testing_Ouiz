@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Frugal Testing - Dynamic Quiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
+          <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#0b6cff"/><stop offset="1" stop-color="#7b61ff"/></linearGradient></defs>
+          <rect rx="10" width="48" height="48" fill="url(#g)"></rect>
+          <path d="M14 32 L24 16 L34 32 Z" fill="rgba(255,255,255,0.95)"></path>
+        </svg>
+        <div class="title">
+          <h1>Frugal Testing</h1>
+          <div class="tag">Dynamic Quiz • Frontend Demo</div>
+        </div>
+      </div>
+      <nav class="meta">
+        <div class="meta-item">Prepared for <strong>Frugal Testing</strong></div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section id="landing" class="card landing-card">
+        <div class="landing-left">
+          <h2 class="lead">Choose quiz settings</h2>
+          <p class="muted">Select a category, difficulty and how many questions you want. Timer starts per question.</p>
+          <div class="controls">
+            <label>Category
+              <select id="category"></select>
+            </label>
+            <label>Difficulty
+              <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </label>
+            <label>Questions
+              <input id="questionsCount" type="number" min="1" max="20" value="5">
+            </label>
+          </div>
+          <div class="action-row">
+            <button id="startBtn" class="btn primary">Start Quiz</button>
+            <button id="demoBtn" class="btn ghost" onclick="alert('Demo: choose category then Start')">Quick tip</button>
+          </div>
+        </div>
+        <div class="landing-right">
+          <div class="card-stats">
+            <div class="stat">
+              <div class="stat-value" id="stat-total">7</div>
+              <div class="stat-label">Total Questions</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">JS</div>
+              <div class="stat-label">Client-side</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz" class="card hidden quiz-card">
+        <div class="quiz-header">
+          <div class="timer-wrap">
+            <div id="timer" class="timer-pill">00:00</div>
+            <div class="progress-line"><div id="progressBar" class="progress-fill" style="width:0%"></div></div>
+          </div>
+          <div class="quiz-meta">Question <span id="qIndex">1</span> / <span id="qTotal">5</span></div>
+        </div>
+
+        <div id="questionArea" class="question-area"></div>
+        <div id="optionsArea" class="options-area"></div>
+
+        <div class="nav">
+          <button id="prevBtn" class="btn">Previous</button>
+          <button id="nextBtn" class="btn">Next</button>
+          <button id="submitBtn" class="btn primary">Submit</button>
+        </div>
+      </section>
+
+      <section id="result" class="card hidden result-card">
+        <div class="result-grid">
+          <div>
+            <h2>Results</h2>
+            <div id="summary" class="summary"></div>
+            <div id="perQuestion"></div>
+            <div class="action-row" style="margin-top:14px">
+              <button id="restart" class="btn">Restart</button>
+            </div>
+          </div>
+          <div class="charts">
+            <canvas id="pieChart"></canvas>
+            <canvas id="timeChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Frugal Testing • Built by <strong>YourName</strong></div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
